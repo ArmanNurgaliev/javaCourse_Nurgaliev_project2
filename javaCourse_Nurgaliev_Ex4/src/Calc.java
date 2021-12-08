@@ -8,39 +8,52 @@ public class Calc {
     public static final String FACT = "!";
     public static final String POW = "^";
     public static final String COMP = "?";
+    public static double[] num = new double[2];
+    public static String el[] = new String[3];
+    public static boolean afterComp = false;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Выберите действие (1, 2 или 3)");
         int action2 = -1;
         int action = -1;
-        String elem[] = new String[3];
 
         boolean firstAction = true;
         while (true) {
             printFirstMenu();
             String example = "";
-            action = sc.nextInt();
-            sc.nextLine();
+            if (!afterComp) {
+                action = sc.nextInt();
+                sc.nextLine();
+            }
+            else
+                action = 1;
 
             if (action == 1) {
                 firstAction = false;
                 System.out.println("Введите пример через пробел");
                 example = sc.nextLine();
-                elem = example.split(" ");
-                calculate(elem);
+                readInput(example);
+                calculate();
             }
             else if (action == 2) {
                 if (firstAction) {
                     System.out.println("Недоступно!");
                     break;
                 }
+                while (action2 != 0) {
+                    printSecondMenu();
 
-                printSecondMenu();
-
-                action2 = sc.nextInt();
-                if (action2 != 0)
-                    calculateAgain(elem, action2);
+                    action2 = sc.nextInt();
+                    if (action2 != 0) {
+                        System.out.println("Введте число");
+                        if (action2 != 5) {
+                            num[1] = sc.nextInt();
+                            sc.nextLine();
+                        }
+                        calculateAgain(action2);
+                    }
+                }
             }
             else if (action == 3){
                 break;
@@ -52,14 +65,22 @@ public class Calc {
         }
     }
 
-    private static void calculateAgain(String[] el, int a) {
+    private static void readInput(String example) {
+        el = example.split(" ");
+        num[0] = Double.parseDouble(el[0]);
+        if (el.length > 2) {
+            num[1] = Double.parseDouble(el[2]);
+        }
+    }
+
+    private static void calculateAgain(int a) {
         el[1] = a == 1 ? "+" :
                 a == 2 ? "-" :
                 a == 3 ? "*" :
                 a == 4 ? "/" :
                 a == 5 ? "!" :
                 a == 6 ? "^" : "?";
-        calculate(el);
+        calculate();
     }
 
     private static void printSecondMenu() {
@@ -80,60 +101,63 @@ public class Calc {
     }
 
 
-    public static void calculate(String[] el) {
-        double[] num = new double[2];
-        num[0] = Double.parseDouble(el[0]);
-        if (el.length > 2) {
-            num[1] = Double.parseDouble(el[2]);
-        }
+    public static void calculate() {
         if (el[1].equals(ADD))
-            calculateSum(num);
+            calculateSum();
         else if (el[1].equals(SUB))
-            calculateSub(num);
+            calculateSub();
         else if (el[1].equals(MULT))
-            calculateMult(num);
+            calculateMult();
         else if (el[1].equals(DIV))
-            calculateDiv(num);
+            calculateDiv();
         else if (el[1].equals(FACT))
-            calculateFact(num[0]);
+            calculateFact();
         else if (el[1].equals(POW))
-            calculatePow(num);
+            calculatePow();
         else if (el[1].equals(COMP))
-            calculateComp(num);
+            calculateComp();
     }
 
-    private static void calculatePow(double[] num) {
+    private static void calculatePow() {
         System.out.println("\"^\" " + num[0] + " ^ " + num[1] + " = " + Math.pow(num[0], num[1]));
+        num[0] = Math.pow(num[0], num[1]);
     }
 
-    private static void calculateDiv(double[] num) {
+    private static void calculateDiv() {
         System.out.println("\"/\" " + num[0] + " / " + num[1] + " = " + (num[0] / num[1]));
+        num[0] = (num[0] / num[1]);
     }
 
-    private static void calculateMult(double[] num) {
+    private static void calculateMult() {
         System.out.println("\"*\" " + num[0] + " * " + num[1] + " = " + (num[0] * num[1]));
+        num[0] = (num[0] * num[1]);
     }
 
-    private static void calculateSub(double[] num) {
+    private static void calculateSub() {
         System.out.println("\"-\" " + num[0] + " - " + num[1] + " = " + (num[0] - num[1]));
+        num[0] = (num[0] - num[1]);
     }
 
-    private static void calculateSum(double[] num) {
+    private static void calculateSum() {
         System.out.println("\"+\" " + num[0] + " + " + num[1] + " = " + (num[0] + num[1]));
+        num[0] = (num[0] + num[1]);
     }
 
-    private static void calculateComp(double[] num) {
+    private static void calculateComp() {
         System.out.print("\"?\" " + num[0] + " ? " + num[1] + " = ");
         if (num[0] > num[1]) System.out.println(num[0] + " > " + num[1]);
         else if (num[0] < num[1]) System.out.println(num[0] + " < " + num[1]);
         else System.out.println(num[0] + " = " + num[1]);
+        afterComp = true;
     }
 
-    public static void calculateFact(double x) {
+    public static void calculateFact() {
         int ans = 1;
-        for (int i = 2; i <= x; i++) {
+        for (int i = 2; i <= num[0]; i++) {
             ans *= i;
         }
-        System.out.println("\"!\" " + x + " ! = " + ans);
+        System.out.println("\"!\" " + num[0] + " ! = " + ans);
+
+        num[0] = ans;
     }
 }
