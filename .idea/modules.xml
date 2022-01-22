@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/javaCourse_Nurgaliev_Ex10/javaCourse_Nurgaliev_Ex10.iml" filepath="$PROJECT_DIR$/javaCourse_Nurgaliev_Ex10/javaCourse_Nurgaliev_Ex10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaCourse_Nurgaliev_Ex4/javaCourse_Nurgaliev_Ex4.iml" filepath="$PROJECT_DIR$/javaCourse_Nurgaliev_Ex4/javaCourse_Nurgaliev_Ex4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaCourse_Nurgaliev_Ex7/javaCourse_Nurgaliev_Ex7.iml" filepath="$PROJECT_DIR$/javaCourse_Nurgaliev_Ex7/javaCourse_Nurgaliev_Ex7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaCourse_Nurgaliev_Ex8/javaCourse_Nurgaliev_Ex8.iml" filepath="$PROJECT_DIR$/javaCourse_Nurgaliev_Ex8/javaCourse_Nurgaliev_Ex8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaCourse_Nurgaliev_Ex9/javaCourse_Nurgaliev_Ex9.iml" filepath="$PROJECT_DIR$/javaCourse_Nurgaliev_Ex9/javaCourse_Nurgaliev_Ex9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaCourses.iml" filepath="$PROJECT_DIR$/javaCourses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project2/project2.iml" filepath="$PROJECT_DIR$/project2/project2.iml" />
+    </modules>
+  </component>
+</project>
