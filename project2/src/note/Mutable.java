@@ -3,13 +3,15 @@ package note;
 import user.Role;
 
 public interface Mutable {
-    public default void changeName(Role userRole, Note note, String newName) {
+    default boolean changeName(Role userRole, Note note, String newName) {
         if (userRole.equalsRole("admin") || userRole.equalsRole("moderator")) {
             note.setName(newName);
+            return true;
         }
+        return false;
     }
 
-    public default void changeWord(Role userRole, Note note, String oldWord, String newWord) {
+    default boolean changeWord(Role userRole, Note note, String oldWord, String newWord) {
         if (userRole.equalsRole("admin") || userRole.equalsRole("moderator")) {
             String body = note.getBody();
             String[] s = body.split("\\s+");
@@ -20,13 +22,17 @@ public interface Mutable {
                 }
             }
             note.setBody(String.join(" ", s));
+            return true;
         }
+        return false;
     }
 
-    public default void changeBody(Role userRole, Note note, String newBody) {
+     default boolean changeBody(Role userRole, Note note, String newBody) {
         if (userRole.equalsRole("admin") || userRole.equalsRole("moderator")) {
             note.setBody(newBody);
+            return true;
         }
+        return false;
     }
 
 
